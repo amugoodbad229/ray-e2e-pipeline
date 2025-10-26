@@ -1,16 +1,12 @@
 # ray-e2e-pipeline
-Start here — Planning board: [Open the tldraw board](https://www.tldraw.com/f/T6oHe2VW4S5P4fRhE0Aqv?d=v2922.-359.12368.5875.iKOg-CiMHSQvCW_rsxAyU)
-
-A cheerful, hands-on guide to scale Python apps with Ray — from single-thread scripts to distributed multi-node pipelines. ⚡️🐍
-
 [![Python >=3.12](https://img.shields.io/badge/python-%3E%3D3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Ray](https://img.shields.io/badge/ray-%E2%9A%A1-blueviolet)](https://www.ray.io/)
 [![issues](https://img.shields.io/badge/issues-open%20one!-orange)](https://github.com/amugoodbad229/ray-e2e-pipeline/issues)
+>A cheerful, hands-on guide to scale Python apps with Ray — from single-thread scripts to distributed multi-node pipelines. ⚡️🐍
 
-A compact, runnable path to take Python code from single-threaded to cluster-ready — with friendly examples and zero manual installs thanks to uv.
 
-Hero visual
-🐍 (single-thread) → ⚡️ (concurrent) → ☁️ (distributed with Ray) → 🚀 (scale & run)
+> [!Important]
+> Start here — Planning board: [Open the tldraw board](https://www.tldraw.com/f/T6oHe2VW4S5P4fRhE0Aqv?d=v2922.-359.12368.5875.iKOg-CiMHSQvCW_rsxAyU)
 
 Why you'll like this
 - Practical, incremental examples you can run immediately.
