@@ -1,4 +1,7 @@
-# process.py
+'''
+GOAL: Process a collection of images sequentially without Ray
+'''
+
 import numpy as np
 from time import time, sleep
 

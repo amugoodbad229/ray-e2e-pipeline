@@ -20,3 +20,7 @@ worker_node_types:
     # Start with 5 of these worker nodes.
     min_workers: 5
     max_workers: 10
+
+# Command: ray up ray_cluster.yaml                 # will make the storage online
+#          ray submit ray_cluster.yaml ray_data.py # will make the appplication connected
+#          ray down ray_cluster.yaml               # will make the storage closed

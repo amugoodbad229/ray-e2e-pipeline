@@ -2,7 +2,7 @@
 GOAL: Process a large collection of images stored in S3 using Ray Data
 '''
 import ray
-import numpy as np
+import os
 
 # We connect to our running Ray cluster.
 # Address='auto' connects to an existing cluster.
@@ -12,7 +12,6 @@ ray.init(address='auto')
 
 # Our original remote function from ray_task.py, slightly adapted to
 # handle the dictionary format that Ray Data uses for rows.
-
 # Difference: We now return both the processed image and the original row's ID.
 @ray.remote
 def process_image(row: dict) -> dict:
@@ -20,7 +19,11 @@ def process_image(row: dict) -> dict:
     inverted_image = 255 - image
     return {'processed_image': inverted_image, 'original_id': row.get('id', None)}
 
-# Now, we set up the full data pipeline in three steps:
+'''
+Comment out whichever pipeline you do not want to run using ctrl + /
+'''
+
+# --- Pipeline using S3 Cloud Storage ---
 
 # 1. Create a lazy reference to the massive dataset in S3.
 print("Creating dataset reference...")
@@ -42,4 +45,43 @@ processed_ds.write_parquet("s3://your-bucket-name/processed-images/")
 
 # Info: Parquet is a columnar storage file format optimized for use with big data processing frameworks.
 
-print("Pipeline complete!")
+print("S3 pipeline complete!")
+
+# --- Pipeline using Google Cloud Storage ---
+
+print("Creating dataset reference from GCS...")
+ds = ray.data.read_images("gcs://your-gcp-bucket-name/raw-images/")
+
+print("Defining map transformation...")
+processed_ds = ds.map(process_image)
+
+print("Executing pipeline and writing results to GCS...")
+processed_ds.write_parquet("gcs://your-gcp-bucket-name/processed-images/")
+
+print("GCS pipeline complete!")
+
+# --- Pipeline using Local Filesystem ---
+
+# Define local paths
+local_input_path = "./raw-images/"
+local_output_path = "./processed-images/"
+
+# Ensure output directory exists
+if not os.path.exists(local_output_path):
+    os.makedirs(local_output_path)
+
+print("Creating dataset reference from local files...")
+ds = ray.data.read_images(local_input_path)
+
+print("Defining map transformation...")
+processed_ds = ds.map(process_image)
+
+print("Executing pipeline and writing results locally...")
+processed_ds.write_parquet(local_output_path)
+
+print("Local pipeline complete!")
+
+# --- End of all pipelines ---
+
+# Shutdown Ray when done
+ray.shutdown()
