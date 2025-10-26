@@ -1,4 +1,6 @@
 # ray-e2e-pipeline
+Start here — Planning board: [Open the tldraw board](https://www.tldraw.com/f/T6oHe2VW4S5P4fRhE0Aqv?d=v2922.-359.12368.5875.iKOg-CiMHSQvCW_rsxAyU)
+
 A cheerful, hands-on guide to scale Python apps with Ray — from single-thread scripts to distributed multi-node pipelines. ⚡️🐍
 
 [![Python >=3.12](https://img.shields.io/badge/python-%3E%3D3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
